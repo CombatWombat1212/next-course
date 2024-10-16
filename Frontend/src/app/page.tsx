@@ -1,6 +1,6 @@
 import { FeatureSection } from "@/components/custom/FeaturesSection";
 import HeroSection from "@/components/custom/HeroSection";
-import { getHomePageData } from "@/data/loaders";
+import { getGlobalPageData, getHomePageData } from "@/data/loaders";
 
 
 const blockComponents = {

@@ -8,19 +8,13 @@
   "attributes": {
     "logoText": {
       "type": "component",
-      "repeatable": true,
+      "repeatable": false,
       "component": "components.link"
     },
     "ctaButton": {
       "type": "component",
       "repeatable": false,
       "component": "components.link"
-    },
-    "footer": {
-      "displayName": "Footer",
-      "type": "component",
-      "repeatable": false,
-      "component": "layout.footer"
     }
   }
 }

@@ -26,7 +26,7 @@ interface LinkProps {
 }
 
 function HeroSection({ data }: Readonly<HeroSectionProps>) {
-  console.dir(data, { depth: null });
+//   console.dir(data, { depth: null });
   const { heading, subHeading, image, link } = data;
 
   const imageURL = "http://localhost:1337" + image.url;

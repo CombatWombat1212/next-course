@@ -84,9 +84,8 @@ export interface LayoutHeader extends Struct.ComponentSchema {
     description: '';
   };
   attributes: {
-    logoText: Schema.Attribute.Component<'components.link', true>;
+    logoText: Schema.Attribute.Component<'components.link', false>;
     ctaButton: Schema.Attribute.Component<'components.link', false>;
-    footer: Schema.Attribute.Component<'layout.footer', false>;
   };
 }
 
