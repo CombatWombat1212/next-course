@@ -1,5 +1,20 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
+export interface LayoutHeroSection extends Struct.ComponentSchema {
+  collectionName: 'components_layout_hero_sections';
+  info: {
+    displayName: 'Hero Section';
+    icon: 'house';
+    description: '';
+  };
+  attributes: {
+    heading: Schema.Attribute.String;
+    subHeading: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files'>;
+    link: Schema.Attribute.Component<'components.link', false>;
+  };
+}
+
 export interface SharedSlider extends Struct.ComponentSchema {
   collectionName: 'components_shared_sliders';
   info: {
@@ -62,14 +77,28 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
+export interface ComponentsLink extends Struct.ComponentSchema {
+  collectionName: 'components_components_links';
+  info: {
+    displayName: 'Link';
+  };
+  attributes: {
+    url: Schema.Attribute.String;
+    text: Schema.Attribute.String;
+    isExternal: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'layout.hero-section': LayoutHeroSection;
       'shared.slider': SharedSlider;
       'shared.seo': SharedSeo;
       'shared.rich-text': SharedRichText;
       'shared.quote': SharedQuote;
       'shared.media': SharedMedia;
+      'components.link': ComponentsLink;
     }
   }
 }

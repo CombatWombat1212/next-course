@@ -34,3 +34,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+############################
+# Swagger auto-generated files
+############################
+
+src/extensions/documentation/documentation
+src/extensions/documentation/public
