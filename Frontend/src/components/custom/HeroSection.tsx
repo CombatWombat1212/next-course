@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { StrapiImage } from "./StrapiImage";
 
 interface HeroSectionProps {
   data: {
@@ -33,7 +34,14 @@ function HeroSection({ data }: Readonly<HeroSectionProps>) {
   return (
     <>
       <header className="relative h-[40rem] overflow-hidden truncate">
-        <img className="absolute inset-0 object-cover w-full h-full" src={imageURL} />
+
+        <StrapiImage 
+        src={image.url}
+        width={1920}
+        height={1080}
+        alt={image.alternativeText}
+        className="absolute inset-0 object-cover w-full h-full"
+        />
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white bg-black bg-opacity-20">
           <h1 className="text-4xl font-bold md:text-5xl lg:text-6xl">{heading}</h1>
