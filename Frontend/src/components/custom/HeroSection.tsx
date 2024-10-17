@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { StrapiImage } from "./StrapiImage";
+import { getUserMeLoader } from "@/data/services/getUserMeLoader";
 
 interface HeroSectionProps {
   data: {
@@ -25,11 +26,11 @@ interface LinkProps {
   isExternal: boolean;
 }
 
-function HeroSection({ data }: Readonly<HeroSectionProps>) {
-//   console.dir(data, { depth: null });
+async function HeroSection({ data }: Readonly<HeroSectionProps>) {
   const { heading, subHeading, image, link } = data;
 
-  const imageURL = "http://localhost:1337" + image.url;
+  const user = await getUserMeLoader();
+  const linkUrl = user.ok ? "/dashboard" : link.url
 
   return (
     <>
@@ -47,8 +48,8 @@ function HeroSection({ data }: Readonly<HeroSectionProps>) {
           <h1 className="text-4xl font-bold md:text-5xl lg:text-6xl">{heading}</h1>
           <p className="mt-4 text-lg md:text-xl lg:text-2xl">{subHeading}</p>
 
-          <Link className="mt-8 inline-flex items-center justify-center px-6 py-3 text-base font-medium text-black bg-white rounded-md shadow hover:bg-gray-100" href={link.url}>
-            {link.text}
+          <Link className="mt-8 inline-flex items-center justify-center px-6 py-3 text-base font-medium text-black bg-white rounded-md shadow hover:bg-gray-100" href={linkUrl}>
+            {user.ok ? "Dashboard" : "Login"}
           </Link>
         </div>
       </header>

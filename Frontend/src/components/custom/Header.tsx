@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Logo } from "@/components/custom/Logo";
 import { Button } from "@/components/ui/button";
+import { getUserMeLoader } from "@/data/services/getUserMeLoader";
+import { LogoutButton } from "./LogoutButton";
 
 interface HeaderProps {
   data: {
@@ -8,24 +10,52 @@ interface HeaderProps {
       id: number;
       text: string;
       url: string;
-    }
+    };
     ctaButton: {
       id: number;
       text: string;
       url: string;
     };
-  }
+  };
+}
+
+interface AuthUserProps {
+  username: string;
+  email: string;
+}
+
+export function LoggedInUser({
+  userData,
+}: {
+  readonly userData: AuthUserProps;
+}) {
+  return (
+    <div className="flex gap-2">
+      <Link
+        href="/dashboard/account"
+        className="hover:text-primary font-semibold"
+      >
+        {userData.username}
+      </Link>
+      <LogoutButton />
+    </div>
+  );
 }
 
 export async function Header({ data }: Readonly<HeaderProps>) {
-//   console.log(data);
-  
-    const { logoText, ctaButton } = data;
+  const user = await getUserMeLoader();
+  const { logoText, ctaButton } = data;
   return (
-    <div className="flex items-center justify-between px-4 py-3 bg-white shadow-md dark:bg-gray-800">
-      <Logo text={logoText.text}/>
+    <div className="flex items-center justify-between bg-white px-4 py-3 shadow-md dark:bg-gray-800">
+      <Logo text={logoText.text} />
       <div className="flex items-center gap-4">
-        <Link href={ctaButton.url}><Button>{ctaButton.text}</Button></Link>
+        {user.ok ? (
+          <LoggedInUser userData={user.data} />
+        ) : (
+          <Link href={ctaButton.url}>
+            <Button>{ctaButton.text}</Button>
+          </Link>
+        )}
       </div>
     </div>
   );
