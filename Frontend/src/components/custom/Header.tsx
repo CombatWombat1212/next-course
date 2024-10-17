@@ -18,7 +18,7 @@ interface HeaderProps {
 }
 
 export async function Header({ data }: Readonly<HeaderProps>) {
-  console.log(data);
+//   console.log(data);
   
     const { logoText, ctaButton } = data;
   return (
